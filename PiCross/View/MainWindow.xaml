@@ -5,8 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Picross" Height="900" Width="1000">
     <Grid>
-        
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0,99" StartPoint="0,0">
+                <GradientStop Color="DarkSeaGreen" Offset="0"/>
+                <GradientStop Color="Yellow" Offset="0.9"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <ContentControl Content="{Binding CurrentWindow}"/>
+
+        <Grid.Style>
+            <Style TargetType="Grid">
+                <Style.Triggers>
+                    <EventTrigger RoutedEvent="PreviewMouseDown">
+                        <SoundPlayerAction Source="/Files/sound.wav" />
+                    </EventTrigger>
+                </Style.Triggers>
+            </Style>
+
+        </Grid.Style>
+
+
     </Grid>
 </Window>
