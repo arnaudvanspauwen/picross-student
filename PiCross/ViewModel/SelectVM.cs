@@ -20,12 +20,6 @@ namespace ViewModel
 
             Puzzles = dummyData.PuzzleLibrary.Entries;
 
-            /*Puzzles = new ArrayList();
-
-            foreach (IPuzzleLibraryEntry entry in list)
-            {
-                Puzzles.Add(vm.PiCrossFacade.CreatePlayablePuzzle(entry.Puzzle));
-            }*/
             SelectedPuzzle = Puzzles.ElementAt(0);
 
             ChoosePuzzle = new ChoosePuzzle(MainWindowVM);
@@ -37,13 +31,17 @@ namespace ViewModel
         public PiCrossFacade Facade;
 
         public MainWindowVM vm;
+
         public IPuzzleLibraryEntry SelectedPuzzle { get; set; }
 
         public IEnumerable<IPuzzleLibraryEntry> Puzzles { get; }
-        /*public ArrayList Puzzles { get; }*/
+
         public ICommand ChoosePuzzle { get; }
+
         public ICommand Back { get; }
+
         public ICommand Quit { get; }
+
         public ICommand Play { get; }
     }
 
