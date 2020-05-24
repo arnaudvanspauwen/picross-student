@@ -20,19 +20,24 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBlock Text="PICROSS" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="80" FontFamily="Franklin Gothic Heavy" Grid.Row="0" Padding="0 10 0 0"/>
-        <!--Game-->
-        <controls:PiCrossControl x:Name="PicrossControl"  Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Grid="{Binding Grid}" RowConstraints="{Binding PlayablePuzzle.RowConstraints}" ColumnConstraints="{Binding PlayablePuzzle.ColumnConstraints}">
+
+        <TextBlock Text="{Binding GetTimer}" FontSize="30" FontFamily="Franklin Gothic Heavy"/>
+        
+        <controls:PiCrossControl x:Name="PicrossControl" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Grid="{Binding Grid}" RowConstraints="{Binding PlayablePuzzle.RowConstraints}" ColumnConstraints="{Binding PlayablePuzzle.ColumnConstraints}">
+            
+            
             <controls:PiCrossControl.SquareTemplate>
                 <DataTemplate>
-                    <!--Squares-->
                     <Button CommandParameter="{Binding PSquare}" Command="{Binding Click}" BorderBrush="White" HorizontalAlignment="Center">
                         <Button.Content>
-                            <Rectangle Width="45" Height="45" Stroke="Black" Fill="{Binding Contents.Value, Converter={StaticResource squareConverter}}"/>
+                            <Rectangle Width="40" Height="40" Stroke="Green" Fill="{Binding Contents.Value, Converter={StaticResource squareConverter}}"/>
                         </Button.Content>
                     </Button>
                 </DataTemplate>
             </controls:PiCrossControl.SquareTemplate>
-            <!--RowNumber-->
+            
+            
+            
             <controls:PiCrossControl.RowConstraintsTemplate>
                 <DataTemplate>
                     <ItemsControl ItemsSource="{Binding Values}">
@@ -43,13 +48,15 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Width="45" Height="45" Text="{Binding Value}" FontSize="20" Foreground="{Binding IsSatisfied.Value, Converter={StaticResource boolConverter}}"/>
+                                <TextBlock Width="40" Height="40" Text="{Binding Value}" FontSize="20" FontFamily="Franklin Gothic Heavy" Foreground="{Binding IsSatisfied.Value, Converter={StaticResource boolConverter}}"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </DataTemplate>
             </controls:PiCrossControl.RowConstraintsTemplate>
-            <!--ColumnNumber-->
+           
+            
+            
             <controls:PiCrossControl.ColumnConstraintsTemplate>
                 <DataTemplate>
                     <ItemsControl ItemsSource="{Binding Values}" >
@@ -60,14 +67,17 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Width="45" Height="45" Text="{Binding Value}" FontSize="20" Foreground="{Binding IsSatisfied.Value, Converter={StaticResource boolConverter}}"/>
+                                <TextBlock Width="40" Height="40" Text="{Binding Value}" FontSize="20" FontFamily="Franklin Gothic Heavy" Foreground="{Binding IsSatisfied.Value, Converter={StaticResource boolConverter}}"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </DataTemplate>
             </controls:PiCrossControl.ColumnConstraintsTemplate>
         </controls:PiCrossControl>
-        <!--Correct-->
+        
+        
+        
+        
         <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Background="DarkSeaGreen" Visibility="{Binding IsSolved.Value, Converter={StaticResource solvedconverter}}" Margin="0,0,0,-42" >
             <StackPanel>
                 <StackPanel.Style>
@@ -79,23 +89,25 @@
                         </Style.Triggers>
                     </Style>
                 </StackPanel.Style>
-                <TextBlock   Text="YOU WON" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="130"  Foreground="Black" FontFamily="Franklin Gothic Heavy" Grid.Row="1"/>
-                <Image gif:ImageBehavior.AnimatedSource="/Files/winner.gif" Width="500" Height="464" Margin="250,0"/>
+                <TextBlock   Text="YOU WON" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="130" Foreground="Black" FontFamily="Franklin Gothic Heavy" Grid.Row="1"/>
+                <Image gif:ImageBehavior.AnimatedSource="/Files/winner.gif" Height="406" Margin="268,0"/>
             </StackPanel>
         </Border>
 
-        <!--Quit/Returns buttons-->
-        <Button  Command="{Binding New}" FontFamily="Franklin Gothic Heavy" FontSize="18" Height="60" Width="100" HorizontalAlignment="Left" VerticalAlignment="top" Grid.Row="1" Margin="324,630,0,0">
+        
+        
+        <Button  Command="{Binding New}" FontFamily="Franklin Gothic Heavy" FontSize="25" Background="Green" Height="100" Width="150" HorizontalAlignment="Left" VerticalAlignment="top" Grid.Row="1" Margin="10,544,0,0">
             <Border>
                 <TextBlock  Text="NEW GAME" TextAlignment="Center" />
             </Border>
         </Button>
 
-        <Button Command="{Binding Quit}" FontFamily="Franklin Gothic Heavy" FontSize="18" Height="60" Width="100" HorizontalAlignment="Right" VerticalAlignment="top" Grid.Row="1" Margin="0,630,320,0">
+        <Button Command="{Binding Quit}" FontFamily="Franklin Gothic Heavy" FontSize="25" Background="Yellow" Height="100" Width="150" HorizontalAlignment="Right" VerticalAlignment="top" Grid.Row="1" Margin="0,544,28,0">
             <Border>
                 <TextBlock  Text="END GAME" TextAlignment="Center" />
             </Border>
         </Button>
         
+
     </Grid>
 </UserControl>

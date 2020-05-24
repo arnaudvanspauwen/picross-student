@@ -10,7 +10,7 @@ using System;
 
 namespace ViewModel
 {
-    public class PuzzleSquareViewModel
+    public class SquareVM
     {
         public IPlayablePuzzleSquare PSquare { get; }
         public ICommand Click { get; }
@@ -22,7 +22,7 @@ namespace ViewModel
             }
         }
 
-        public PuzzleSquareViewModel(IPlayablePuzzleSquare puzzleSquare)
+        public SquareVM(IPlayablePuzzleSquare puzzleSquare)
         {
             PSquare = puzzleSquare;
             Click = new Click(this);
@@ -33,11 +33,11 @@ namespace ViewModel
     {
         // The add { } remove { } gets rid of annoying warning
         public event EventHandler CanExecuteChanged { add { } remove { } }
-        private PuzzleSquareViewModel viewModel;
+        private SquareVM viewModel;
 
-        public Click(PuzzleSquareViewModel puzzleSquareViewModel)
+        public Click(SquareVM SquareVM)
         {
-            viewModel = puzzleSquareViewModel;
+            viewModel = SquareVM;
         }
 
         public bool CanExecute(object parameter)

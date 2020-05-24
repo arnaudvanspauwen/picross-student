@@ -16,7 +16,7 @@ namespace View
 
             var mainWindow = new MainWindow();
 
-            MainWindowViewModel vm = new MainWindowViewModel();
+            MainWindowVM vm = new MainWindowVM();
             vm.Close += MainViewModel_ApplicationExit;
             mainWindow.DataContext = vm;
             mainWindow.Show();

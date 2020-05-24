@@ -154,5 +154,11 @@
     <Resource Include="Files\winner.gif" />
     <Resource Include="Files\sound.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Files\end.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Files\button.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

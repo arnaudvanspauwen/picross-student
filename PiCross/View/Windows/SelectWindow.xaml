@@ -11,38 +11,33 @@
         <converters:PuzzleConverter x:Key="PuzzleConverter"/>
     </UserControl.Resources>
     <Grid>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="CHOOSE" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="80" FontFamily="Franklin Gothic Heavy" Grid.Row="0" Padding="0 10 0 0"/>
-        <StackPanel Grid.Row="1" Margin="0,90,0,0">
-            <ItemsControl ItemsSource="{Binding Puzzles}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Viewbox Width="250">
-                            <Button  BorderBrush="Black" Background="Transparent" VerticalAlignment="Center" CommandParameter="{Binding}" Command="{Binding DataContext.ChoosePuzzle, RelativeSource={RelativeSource AncestorType={x:Type local:SelectWindow}}}">
-                                <Border CornerRadius="5">
-                                    <!-- <TextBlock  Foreground="Black" Background="Transparent"  Text="{Binding Grid.Size}" TextAlignment="Center"  
-                                    HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold" FontFamily="georgia" FontSize="20" Height="70" Width="250"/> -->
-                                    <TextBlock Text="{Binding Grid.Size, Converter={StaticResource PuzzleConverter}}" TextAlignment="Center" HorizontalAlignment="Center" FontSize="35" />
-                                </Border>
-                            </Button>
-                        </Viewbox>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
-        <Button Command="{Binding Quit}" FontFamily="Franklin Gothic Heavy" FontSize="40" Height="100" Width="200" HorizontalAlignment="Right" VerticalAlignment="top" Grid.Row="0" Margin="0 0 20 0">
+
+        <Button Command="{Binding Quit}" FontFamily="Franklin Gothic Heavy" FontSize="40" Background="Yellow" Height="100" Width="200" HorizontalAlignment="Right" VerticalAlignment="top" Grid.Row="1" Margin="0,484,26,0">
             <Border>
-                <TextBlock  Text="END GAME" TextAlignment="Center" />
+                <TextBlock Text="END GAME" TextAlignment="Center" />
             </Border>
         </Button>
-        <Button  Command="{Binding Back}" FontFamily="Franklin Gothic Heavy" FontSize="40" Height="100" Width="200" HorizontalAlignment="Left" VerticalAlignment="top" Grid.Row="0" Margin="10 0 0 0">
+        <Button  Command="{Binding Back}" FontFamily="Franklin Gothic Heavy" FontSize="40" Background="Green" Height="100" Width="200" HorizontalAlignment="Left" VerticalAlignment="top" Grid.Row="1" Margin="10,484,0,0">
             <Border>
                 <TextBlock  Text="BACK" TextAlignment="Center" />
             </Border>
         </Button>
+
+        <TextBlock Text="CHOOSE A PUZZLE SIZE" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" FontFamily="Franklin Gothic Heavy" Grid.Row="0" Padding="0 40 0 0" Margin="272,7,268,0" Grid.RowSpan="2" Height="94" Width="460"/>
+        <StackPanel Grid.Row="1" Margin="0,100,0,0">
+            <ListBox BorderBrush="Black" ItemsSource="{Binding Puzzles}" Width="330"  Height="320" Margin="10,0" Background="DarkSeaGreen" HorizontalContentAlignment="Center" SelectedItem="{Binding SelectedPuzzle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock FontFamily="Franklin Gothic Heavy" FontSize="40" TextAlignment="Center" Text="{Binding Converter={StaticResource PuzzleConverter}}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+        <Button Background="Orange" FontFamily="Franklin Gothic Heavy" FontSize="40" Margin="410,484,410,116" Grid.Row="1" Command="{Binding Play}">GO</Button>
     </Grid>
 </UserControl>

@@ -10,48 +10,53 @@ using System.Windows.Input;
 
 namespace ViewModel
 {
-    public class SelectWindowViewModel
+    public class SelectVM
     {
-        public SelectWindowViewModel(MainWindowViewModel mainWindowViewModel)
+        public SelectVM(MainWindowVM MainWindowVM)
         {
-            vm = mainWindowViewModel;
+            vm = MainWindowVM;
 
             var dummyData = vm.PiCrossFacade.CreateDummyGameData();
 
-            var list = dummyData.PuzzleLibrary.Entries;
+            Puzzles = dummyData.PuzzleLibrary.Entries;
 
-            Puzzles = new ArrayList();
+            /*Puzzles = new ArrayList();
 
             foreach (IPuzzleLibraryEntry entry in list)
             {
                 Puzzles.Add(vm.PiCrossFacade.CreatePlayablePuzzle(entry.Puzzle));
-            }
+            }*/
+            SelectedPuzzle = Puzzles.ElementAt(0);
 
-            ChoosePuzzle = new ChoosePuzzle(mainWindowViewModel);
-            Back = new EasyCommand(() => vm.StartViewModel());
-            Quit = new EasyCommand(() => vm.CloseWindow());
+            ChoosePuzzle = new ChoosePuzzle(MainWindowVM);
+            Back = new Commands(() => vm.StartVM());
+            Quit = new Commands(() => vm.CloseWindow());
+            Play = new Commands(() => vm.StartGame(vm.PiCrossFacade.CreatePlayablePuzzle(SelectedPuzzle.Puzzle)));
         }
 
         public PiCrossFacade Facade;
 
-        public MainWindowViewModel vm;
+        public MainWindowVM vm;
+        public IPuzzleLibraryEntry SelectedPuzzle { get; set; }
 
-        public ArrayList Puzzles { get; }
+        public IEnumerable<IPuzzleLibraryEntry> Puzzles { get; }
+        /*public ArrayList Puzzles { get; }*/
         public ICommand ChoosePuzzle { get; }
         public ICommand Back { get; }
         public ICommand Quit { get; }
+        public ICommand Play { get; }
     }
 
     public class ChoosePuzzle : ICommand
     {
         // The add { } remove { } gets rid of annoying warning
         public event EventHandler CanExecuteChanged { add { } remove { } }
-        private MainWindowViewModel vm { get; }
+        private MainWindowVM vm { get; }
 
 
-        public ChoosePuzzle(MainWindowViewModel mainWindowViewModel)
+        public ChoosePuzzle(MainWindowVM MainWindowVM)
         {
-            vm = mainWindowViewModel;
+            vm = MainWindowVM;
         }
 
         public bool CanExecute(object parameter)

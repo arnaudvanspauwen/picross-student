@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ViewModel
 {
-    public class MainWindowViewModel : INotifyPropertyChanged
+    public class MainWindowVM : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -17,9 +17,10 @@ namespace ViewModel
         public PiCrossFacade PiCrossFacade { get; }
 
         public Action Close { get; set; }
-        public MainWindowViewModel()
+        
+        public MainWindowVM()
         {
-            CurrentWindow = new StartViewModel(this);
+            CurrentWindow = new StartVM(this);
             PiCrossFacade = new PiCrossFacade();
         }
 
@@ -38,17 +39,17 @@ namespace ViewModel
 
         public void StartGame(IPlayablePuzzle puzzle)
         {
-            CurrentWindow = new GameViewModel(this, puzzle);
+            CurrentWindow = new GameVM(this, puzzle);
         }
 
         public void ChooseGame()
         {
-            CurrentWindow = new SelectWindowViewModel(this);
+            CurrentWindow = new SelectVM(this);
         }
 
-        public void StartViewModel()
+        public void StartVM()
         {
-            CurrentWindow = new StartViewModel(this);
+            CurrentWindow = new StartVM(this);
         }
 
         public void CloseWindow()
